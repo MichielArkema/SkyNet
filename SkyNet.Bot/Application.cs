@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
+using SkyNet.Bot.Commands;
 using SkyNet.Bot.Features.ChatFilter;
 
 namespace SkyNet.Bot
@@ -10,8 +11,9 @@ namespace SkyNet.Bot
     {
         private readonly string _token;
         
+        public CommandsManager CommandsManager { get; private set; }
         public DiscordSocketClient DiscordClient { get; private set; }
-        
+
         public ChatFilter ChatFilter { get; private set; }
         
         public async Task StartAsync()
@@ -29,6 +31,8 @@ namespace SkyNet.Bot
                 this.DiscordClient = new DiscordSocketClient(config);
                 this.DiscordClient.Log += this.OnLog;
 
+                this.CommandsManager = new CommandsManager(this);
+                
                 this.ChatFilter = new ChatFilter(this);
             
                 await this.DiscordClient.LoginAsync(TokenType.Bot, this._token);
