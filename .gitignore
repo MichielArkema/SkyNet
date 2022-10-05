@@ -32,6 +32,7 @@ _UpgradeReport_Files/
 [Pp]ackages/
 
 *.resx
+resources.Designer.cs
 SkyNet.sln.DotSettings.user
 Thumbs.db
 Desktop.ini
