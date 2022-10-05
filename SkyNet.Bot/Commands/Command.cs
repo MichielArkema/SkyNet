@@ -13,6 +13,7 @@ namespace SkyNet.Bot.Commands
             _application = application;
         }
 
+        
         public abstract string Name { get; }
 
         public abstract string Summary { get; }
