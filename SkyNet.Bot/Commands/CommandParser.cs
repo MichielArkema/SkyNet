@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SkyNet.Bot.Commands
 {
@@ -7,16 +9,12 @@ namespace SkyNet.Bot.Commands
         public Tuple<string, string[]> ParseCommand(string content, char commandModifier)
         {
             string[] splittedContent = content.Split(' ');
-
             string commandName = splittedContent[0].Trim(commandModifier);
-            string[] args = { };
 
-            if (splittedContent.Length > 1)
-            {
-                splittedContent.CopyTo(args, 1);
-            }
+            List<string> args = splittedContent.ToList();
+            args.RemoveAt(0);
             
-            return new Tuple<string, string[]>(commandName, args);
+            return new Tuple<string, string[]>(commandName, args.ToArray());
         }
     }
 }
