@@ -106,6 +106,7 @@
         <Compile Include="Commands\CommandAlreadyExistsException.cs" />
         <Compile Include="Commands\CommandDoesNotExistException.cs" />
         <Compile Include="Commands\CommandExecutionContext.cs" />
+        <Compile Include="Commands\CommandParser.cs" />
         <Compile Include="Commands\CommandsManager.cs" />
         <Compile Include="Config\JsonConfig.cs" />
         <Compile Include="Features\BotFeature.cs" />
