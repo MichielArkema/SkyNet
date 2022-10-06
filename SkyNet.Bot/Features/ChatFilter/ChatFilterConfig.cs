@@ -1,12 +1,14 @@
-﻿namespace SkyNet.Bot.Features.ChatFilter
+﻿using System.Collections.Generic;
+
+namespace SkyNet.Bot.Features.ChatFilter
 {
     public class ChatFilterConfig
     {
-        public string[] BadWords { get; set; }
+        public List<string> BadWords { get; set; }
 
         public ChatFilterConfig()
         {
-            this.BadWords = new string[]
+            this.BadWords = new List<string>
             {
                 "fuck",
                 "bitch",
