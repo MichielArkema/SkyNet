@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using SkyNet.Bot.Config;
@@ -7,7 +8,12 @@ namespace SkyNet.Bot.Features.ChatFilter
 {
     public class ChatFilter : BotFeature
     {
-        private ChatFilterConfig _config = new ChatFilterConfig();
+        public ChatFilterConfig Config = new ChatFilterConfig();
+
+        private readonly ulong[] _whitelist = new ulong[]
+        {
+            979682143062097931
+        };
         
         public ChatFilter(Application application) : base(application)
         {
@@ -21,12 +27,14 @@ namespace SkyNet.Bot.Features.ChatFilter
 
             if (parser.HasConfig)
             {
-                this._config = parser.LoadConfig<ChatFilterConfig>();
+                this.Config = parser.LoadConfig<ChatFilterConfig>();
             }
             else
             {
-                parser.SaveConfig(this._config);
+                parser.SaveConfig(this.Config);
             }
+            
+            this.Application.CommandsManager.RegisterCommand(new BadWordsCommand(this.Application, this));
             
             Console.WriteLine("[SkyNet.ChatFilter] Chat Filter has been initialized.");
             return Task.CompletedTask;
@@ -41,8 +49,11 @@ namespace SkyNet.Bot.Features.ChatFilter
                 return;
             }
 
+            if (this._whitelist.Contains(user.Id))
+                return;
+            
             string content = socket.Content;
-            foreach (string word in this._config.BadWords)
+            foreach (string word in this.Config.BadWords)
             {
                 if (content.ToLower().Contains(word))
                 {

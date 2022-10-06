@@ -110,7 +110,7 @@
         <Compile Include="Commands\CommandsManager.cs" />
         <Compile Include="Config\JsonConfig.cs" />
         <Compile Include="Features\BotFeature.cs" />
-        <Compile Include="Features\ChatFilter\BadWordCommand.cs" />
+        <Compile Include="Features\ChatFilter\BadWordsCommand.cs" />
         <Compile Include="Features\ChatFilter\ChatFilter.cs" />
         <Compile Include="Features\ChatFilter\ChatFilterConfig.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
